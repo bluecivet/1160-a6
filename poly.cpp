@@ -44,27 +44,40 @@ int checkDegree(const Poly* p);			// chck the highest degree for poly
 
 int main()
 {
-	cout << "please input a" << endl;
-	Poly* a = readPoly();
-	outputPoly(a, 'x');
-	cout << "please input b" << endl << endl;;
-	Poly* b = readPoly();
-	outputPoly(b, 'x');
+	bool keepGo = true;
+	string go;
+	while (keepGo)
+	{
+		cout << "please input a" << endl;
+		Poly* a = readPoly();
+		outputPoly(a, 'x');
+		cout << "please input b" << endl << endl;;
+		Poly* b = readPoly();
+		outputPoly(b, 'x');
 
-	cout << "addition" << endl;
-	Poly* c = addPoly(a, b);
-	outputPoly(c, 'x');
+		cout << "addition" << endl;
+		Poly* c = addPoly(a, b);
+		outputPoly(c, 'x');
 
-	cout << endl;
+		cout << endl;
 
-	cout << "multiply" << endl;
-	Poly* d = multPoly(a, b);
-	outputPoly(d, 'x');
+		cout << "multiply" << endl;
+		Poly* d = multPoly(a, b);
+		outputPoly(d, 'x');
 
-	deletePoly(a);
-	deletePoly(b);
-	deletePoly(c);
-	deletePoly(d);
+		deletePoly(a);
+		deletePoly(b);
+		deletePoly(c);
+		deletePoly(d);
+
+		cout << endl << endl;
+		cout << "enter n for exit enter ohter character and press enter keep going" << endl;
+		cin >> go;
+		if (go == "n")
+			keepGo = false;
+		cout << endl << endl;
+	}
+
 	cout << "end" << endl;
 
 	return 0;
@@ -283,7 +296,7 @@ Poly* addPoly(const Poly* a, const Poly* b)
 	}
 
 	// the new degree will be the larget degree one between a and b
-	double newDegree = a->degree > b->degree ? a->degree : b->degree;
+	int newDegree = a->degree > b->degree ? a->degree : b->degree;
 	// new degree confirm the length of new array whcih sort the parameter for reselt
 	int* arr = new int[newDegree + 1];
 
